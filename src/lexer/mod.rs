@@ -111,7 +111,7 @@ impl Lexer {
                             self.advance();
                         }    
                     }
-                    self.add_token(token::TokenType::NumberType, Some(token::TokenLiteral::NumberLiteral(self.source[self.start+1..self.current-1].iter().collect::<String>().parse::<f32>().unwrap())));
+                    self.add_token(token::TokenType::NumberType, Some(token::TokenLiteral::NumberLiteral(self.source[self.start..self.current].iter().collect::<String>().parse::<f32>().unwrap())));
                 } else if c.is_alphabetic() {
                     while self.peek().is_alphanumeric() || self.peek() == '_' {
                         self.advance();
