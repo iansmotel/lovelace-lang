@@ -19,13 +19,13 @@ fn run_lovelace_from_file(file_path: String) {
         Ok(source_string) => source_string,
         Err(err) => {
             println!("Problem retrieving file: {err}");
-            process::exit(64);
+            process::exit(66); //EX_NOINPUT as in file doesnt exo=ist or not readable
         },
     };
 
     run(source).unwrap_or_else(|err| {
         println!("{err}");
-        process::exit(65);
+        process::exit(65); //EX_DATAERR input data in the file is incorrect
     });
 
 }
@@ -66,7 +66,7 @@ pub fn start_lovelace(args: &[String]) {
     let file_path = retrieve_file_path(&args)
     .unwrap_or_else(|err| {
         println!("Problem parsing arguments: {err}");
-        process::exit(64);
+        process::exit(64); //EX_USAGE the lovelace interpreter was used incorrectly
     });
 
     if file_path.is_empty() {
